@@ -1,12 +1,13 @@
-import { Controller, Post } from "@nestjs/common";
+import { Controller, Post, Req } from "@nestjs/common";
 import { AuthService } from "./auth.service";
+import { Request} from "express"
 // Controllers are responsible for handling incoming requests and returning responses to the client.
 @Controller("auth") //decorator- enables nest create a routing map by associating the class with the metadata
 export class AuthController {
   constructor(private authService: AuthService) {}
 
   @Post("signup")
-  signup() {
+  signup(@Req() req: Request) {
     return this.authService.signup();
   }
 
